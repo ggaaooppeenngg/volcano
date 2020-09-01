@@ -232,12 +232,6 @@ func TestAdmitQueues(t *testing.T) {
 	if err != nil {
 		t.Errorf("Create hierarchical queue failed for %v.", err)
 	}
-	list, err := config.VolcanoClient.SchedulingV1beta1().Queues().List(context.TODO(), metav1.ListOptions{})
-	if err != nil {
-		t.Errorf("List %v", err)
-	}
-	println(list)
-
 	defer func() {
 		if err := config.VolcanoClient.SchedulingV1beta1().Queues().Delete(context.TODO(), openStateForDelete.Name, v1.DeleteOptions{}); err != nil {
 			fmt.Println(fmt.Sprintf("Delete queue with open state failed for %v.", err))
